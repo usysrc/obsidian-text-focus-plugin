@@ -1,6 +1,6 @@
 # Obsidian Text Focus Plugin
 
-Focus the text area when opening a new note
+Focus the text area when opening a new note.
 
 ## Releasing new releases
 
