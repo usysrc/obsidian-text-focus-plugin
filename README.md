@@ -13,6 +13,13 @@ Focus the text area when opening a new note.
 > You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
 > The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
 
+You can let the github workflow create the release by:
+
+```
+git tag -a 1.0.1 -m "1.0.1"
+git push origin 1.0.1
+```
+
 ## Adding your plugin to the community plugin list
 
 -   Check https://github.com/obsidianmd/obsidian-releases/blob/master/plugin-review.md
