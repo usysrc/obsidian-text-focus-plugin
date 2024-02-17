@@ -1,4 +1,4 @@
-import { MarkdownView, Plugin, TAbstractFile } from 'obsidian';
+import { MarkdownView, Plugin } from 'obsidian';
 
 
 export default class TextFocusPlugin extends Plugin {
@@ -20,11 +20,10 @@ export default class TextFocusPlugin extends Plugin {
 
 	/**
 	 * Is called when a new note is created.
-	 * @param file - The abstract file to be used for creating the new note.
 	 */
-	async onNewNote(file: TAbstractFile) {
+	async onNewNote() {
 		// Add a delay of 50 milliseconds
-		await this.delay(50);
+		await this.wait(50);
 
 		// Set the focus on the new note
 		const view = this.app.workspace.getActiveViewOfType(MarkdownView);
@@ -35,8 +34,13 @@ export default class TextFocusPlugin extends Plugin {
 			}
 		}
 	}
-
-	async delay(ms: number) {
-		return new Promise(resolve => setTimeout(resolve, ms));
+	/**
+	 * Delay for the specified number of milliseconds.
+	 *
+	 * @param {number} milliseconds - the number of milliseconds to wait
+	 * @return {Promise<void>} a Promise that resolves after the specified number of milliseconds
+	 */
+	async wait(milliseconds: number): Promise<void> {
+		return new Promise(resolve => setTimeout(resolve, milliseconds));
 	}
 }
