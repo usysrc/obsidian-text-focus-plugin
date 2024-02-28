@@ -23,7 +23,7 @@ export default class TextFocusPlugin extends Plugin {
 	 */
 	async onNewNote() {
 		// Add a delay of 50 milliseconds
-		await this.wait(50);
+		await sleep(50)
 
 		// Set the focus on the new note
 		const view = this.app.workspace.getActiveViewOfType(MarkdownView);
@@ -33,14 +33,5 @@ export default class TextFocusPlugin extends Plugin {
 				editor.focus();
 			}
 		}
-	}
-	/**
-	 * Delay for the specified number of milliseconds.
-	 *
-	 * @param {number} milliseconds - the number of milliseconds to wait
-	 * @return {Promise<void>} a Promise that resolves after the specified number of milliseconds
-	 */
-	async wait(milliseconds: number): Promise<void> {
-		return new Promise(resolve => setTimeout(resolve, milliseconds));
 	}
 }
