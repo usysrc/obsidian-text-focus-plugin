@@ -11,7 +11,7 @@ export default class TextFocusPlugin extends Plugin {
 			this.registerEvent(
 				this.app.vault.on('create', (file) => {
 					if (file.name.endsWith('.md')) {
-						this.onNewNote(file);
+						this.onNewNote();
 					}
 				})
 			)
@@ -23,7 +23,7 @@ export default class TextFocusPlugin extends Plugin {
 	 */
 	async onNewNote() {
 		// Add a delay of 50 milliseconds
-		await sleep(50)
+		await sleep(50);
 
 		// Set the focus on the new note
 		const view = this.app.workspace.getActiveViewOfType(MarkdownView);
