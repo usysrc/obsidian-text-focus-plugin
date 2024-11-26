@@ -8,30 +8,50 @@ export default class TextFocusPlugin extends Plugin {
 	 */
 	async onload() {
 		this.app.workspace.onLayoutReady(() => {
+
+			// Change focus when a new note is created
 			this.registerEvent(
 				this.app.vault.on('create', (file) => {
 					if (file.name.endsWith('.md')) {
-						this.onNewNote();
+						this.changeFocus();
 					}
+				})
+			)
+			
+			// Change focus when toggled to source mode
+			this.registerEvent(
+				this.app.workspace.on('layout-change', () => {
+					this.changeFocus();
 				})
 			)
 		})
 	}
 
 	/**
-	 * Is called when a new note is created.
+	 * Changes the focus to the note.
 	 */
-	async onNewNote() {
+	async changeFocus() {
 		// Add a delay of 50 milliseconds
 		await sleep(50);
 
 		// Set the focus on the new note
 		const view = this.app.workspace.getActiveViewOfType(MarkdownView);
-		if (view) {
-			const editor = view.editor;
-			if (editor) {
-				editor.focus();
-			}
+
+		// Check if the view is a MarkdownView
+		if (!view) {
+			return;
+		}
+		
+		// Check if the view is in source mode
+		if (view.getMode() !== 'source') {
+			return;
+		}
+
+		// Set the focus on the editor
+		const editor = view.editor;
+		if (editor) {
+			console.log("focus");
+			editor.focus();
 		}
 	}
 }
