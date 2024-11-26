@@ -50,7 +50,6 @@ export default class TextFocusPlugin extends Plugin {
 		// Set the focus on the editor
 		const editor = view.editor;
 		if (editor) {
-			console.log("focus");
 			editor.focus();
 		}
 	}
